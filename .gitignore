@@ -5,6 +5,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 !**/src/main/companies-frontend/node_modules
+src/main/companies-frontend/nodejs/node-v16.17.0-win-x64/node_modules/
 
 ### STS ###
 .apt_generated
