@@ -59,6 +59,19 @@ processResources {
 	dependsOn 'copyFrontendToBuild'
 }
 
+task stage(type: Copy, dependsOn: [clean, build]) {
+	from jar.archivePath
+	into project.rootDir
+	rename {
+		'catalogOfCompanies.jar'
+	}
+}
+stage.mustRunAfter(clean)
+
+clean << {
+	project.file('catalogOfCompanies.jar').delete()
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'

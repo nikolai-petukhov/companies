@@ -1,1 +1,1 @@
-web: java -Dserver.port=3002 -jar build/libs/*.jar
+web: java -Dserver.port=3002 -jar catalogOfCompanies.jar
