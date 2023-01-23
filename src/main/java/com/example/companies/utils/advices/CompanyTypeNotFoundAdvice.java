@@ -1,5 +1,6 @@
-package com.example.companies.exceptions;
+package com.example.companies.utils.advices;
 
+import com.example.companies.utils.exceptions.CompanyTypeNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

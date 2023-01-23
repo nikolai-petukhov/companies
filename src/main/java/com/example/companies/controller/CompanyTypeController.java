@@ -1,6 +1,6 @@
 package com.example.companies.controller;
 
-import com.example.companies.exceptions.CompanyTypeNotFoundException;
+import com.example.companies.utils.exceptions.CompanyTypeNotFoundException;
 import com.example.companies.model.CompanyType;
 import com.example.companies.repository.CompanyTypeRepository;
 import org.springframework.beans.BeanUtils;
@@ -19,7 +19,7 @@ public class CompanyTypeController {
 
     @GetMapping()
     public List<CompanyType> getCompanyTypeList() {
-        return this.companyTypeRepository.findAll();
+        return companyTypeRepository.findAll();
     }
 
     @GetMapping("{id}")

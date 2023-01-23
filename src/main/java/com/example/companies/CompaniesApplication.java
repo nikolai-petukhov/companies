@@ -1,7 +1,9 @@
 package com.example.companies;
 
 import com.example.companies.model.CompanyType;
+import com.example.companies.model.Employee;
 import com.example.companies.repository.CompanyTypeRepository;
+import com.example.companies.repository.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -16,6 +18,8 @@ public class CompaniesApplication implements CommandLineRunner {
 
     @Autowired
     private CompanyTypeRepository companyTypeRepository;
+    @Autowired
+    private EmployeeRepository employeeRepository;
 
     @Override
     public void run(String...args) throws Exception {
@@ -23,6 +27,12 @@ public class CompaniesApplication implements CommandLineRunner {
         this.companyTypeRepository.save(new CompanyType("Public Company"));
         this.companyTypeRepository.save(new CompanyType("Unlimited Company"));
         this.companyTypeRepository.save(new CompanyType("One Person Company"));
+
+        this.employeeRepository.save(new Employee("John", "Doe"));
+        this.employeeRepository.save(new Employee("Elton", "John"));
+        this.employeeRepository.save(new Employee("David", "Jackson"));
+        this.employeeRepository.save(new Employee("Nicolas", "Cage"));
+
     }
 
 }
