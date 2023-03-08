@@ -1,10 +1,9 @@
 package com.example.companies.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.HashSet;
 
 @Entity
 @Table(name = "company")
@@ -25,12 +24,32 @@ public class Company {
     private String phoneNumber;
     private long numberOfEmployee;
     private String additionalInformation;
-    private Date foundingDate;
+    private long foundingDate;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "company_type_id", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "company_type_id")
     private CompanyType companyType;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "company")
-    private HashSet<Employee> employees;
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "employee_id")
+    private Employee employee;
+
+    public Company(
+            String name,
+            String description,
+            String address,
+            String phoneNumber,
+            long numberOfEmployee,
+            String additionalInformation,
+            long foundingDate
+    ) {
+        this.name = name;
+        this.description = description;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.numberOfEmployee = numberOfEmployee;
+        this.additionalInformation = additionalInformation;
+        this.foundingDate = foundingDate;
+    }
 }

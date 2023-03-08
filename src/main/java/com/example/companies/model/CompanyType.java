@@ -1,5 +1,6 @@
 package com.example.companies.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import javax.persistence.*;
 import java.util.List;
@@ -20,7 +21,8 @@ public class CompanyType {
     @Column(name = "type_name")
     private String typeName;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "company_type")
+    @JsonIgnore
+    @OneToMany(mappedBy = "companyType", fetch = FetchType.LAZY)
     private List<Company> companies;
 
     public CompanyType(String typeName) {

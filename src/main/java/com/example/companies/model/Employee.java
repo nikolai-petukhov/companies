@@ -1,5 +1,6 @@
 package com.example.companies.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,8 +24,8 @@ public class Employee {
     @Column(name = "last_name")
     private String lastName;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "company_id", nullable = false)
+    @JsonIgnore
+    @OneToOne(mappedBy = "employee")
     private Company company;
 
     public Employee(String firstName, String lastName) {
