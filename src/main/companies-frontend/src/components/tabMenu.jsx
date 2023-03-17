@@ -6,6 +6,10 @@ import TabList from '@mui/lab/TabList';
 import TabPanel from '@mui/lab/TabPanel';
 import BusinessIcon from '@mui/icons-material/Business';
 import MenuBookIcon from '@mui/icons-material/MenuBook';
+import { Grid } from '@mui/material';
+import AddDelButtonsPanel from './addDelButtonsPanel';
+import CompaniesList from './companiesList';
+import CompanyInformationForm from './companyInformationForm';
 
 const TabMenu = () => {
     const [value, setValue] = useState('1')
@@ -23,11 +27,21 @@ const TabMenu = () => {
               <Tab label="Catalogs" value="2" icon={<MenuBookIcon />} iconPosition="start"/>
             </TabList>
           </Box>
-          <TabPanel value="1">Companies</TabPanel>
+          <TabPanel value="1">
+            <Grid container spacing={2}>
+              <Grid item xs={4}>
+                <AddDelButtonsPanel />
+                <CompaniesList />
+              </Grid>
+              <Grid item xs={8} style={{backgroundColor: '#e3f2fd'}}>
+                <CompanyInformationForm />
+              </Grid>
+            </Grid>
+          </TabPanel>
           <TabPanel value="2">Catalogs</TabPanel>
         </TabContext>
       </Box>
-    );
+    )
 }
 
-export default TabMenu;
+export default TabMenu

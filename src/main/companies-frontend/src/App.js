@@ -2,13 +2,17 @@ import React from 'react'
 
 import { Container }  from '@mui/material'
 
-import TabMenu from './components/tab-menu'
+import TabMenu from './components/tabMenu'
+import Header from './components/header'
 
 const App = () => {
   return (
-    <Container maxWidth="lg">
-      <TabMenu></TabMenu>
-    </Container>
+    <>
+      <Header />
+      <Container maxWidth="lg">
+        <TabMenu />
+      </Container>
+    </>
   )
 }
 
