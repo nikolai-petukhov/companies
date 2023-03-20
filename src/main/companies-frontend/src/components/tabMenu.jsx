@@ -15,7 +15,7 @@ import companyService from '../services/company'
 const TabMenu = () => {
     const [value, setValue] = useState('1')
     const [companies, setCompanies] = useState([])
-    const [selectedCompanyId, setSelectedCompanyId] = useState(1)
+    const [selectedCompanyId, setSelectedCompanyId] = useState()
 
     const getSelectedCompanyIdFromList = (id) => setSelectedCompanyId(id)
 
@@ -31,7 +31,7 @@ const TabMenu = () => {
       setValue(newValue)
     }
 
-    if (companies.length === 0) return 'loading data ...' 
+    if (companies.length === 0) return <h1>LOADING DATA...</h1>
     else return (
       <Box sx={{ width: '100%', typography: 'body1' }}>
         <TabContext value={value}>
@@ -48,7 +48,11 @@ const TabMenu = () => {
                 <CompaniesList companies={companies} getSelectedCompanyIdFromList={getSelectedCompanyIdFromList}/>
               </Grid>
               <Grid item xs={8}>
-                <CompanyInformationForm company={companies.find(company => company.id === selectedCompanyId)} />
+                {
+                  selectedCompanyId
+                    ? <CompanyInformationForm company={companies.find(company => company.id === selectedCompanyId)} />
+                    : <h1>Please choose company from the list</h1>
+                }
               </Grid>
             </Grid>
           </TabPanel>

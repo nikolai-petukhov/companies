@@ -7,7 +7,7 @@ import CompaniesListItem from './companiesListItem'
 
 const CompaniesList = ({ companies, getSelectedCompanyIdFromList }) => {
 
-  const [selectedIndex, setSelectedIndex] = useState(1)
+  const [selectedIndex, setSelectedIndex] = useState()
 
   const handleListItemClick = (event, index) => {
       setSelectedIndex(index)
