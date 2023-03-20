@@ -1,24 +1,38 @@
-import React, {useState} from 'react';
-import Box from '@mui/material/Box';
-import Tab from '@mui/material/Tab';
-import TabContext from '@mui/lab/TabContext';
-import TabList from '@mui/lab/TabList';
-import TabPanel from '@mui/lab/TabPanel';
-import BusinessIcon from '@mui/icons-material/Business';
-import MenuBookIcon from '@mui/icons-material/MenuBook';
-import { Grid } from '@mui/material';
-import AddDelButtonsPanel from './addDelButtonsPanel';
-import CompaniesList from './companiesList';
-import CompanyInformationForm from './companyInformationForm';
+import React, {useEffect, useState} from 'react'
+import Box from '@mui/material/Box'
+import Tab from '@mui/material/Tab'
+import TabContext from '@mui/lab/TabContext'
+import TabList from '@mui/lab/TabList'
+import TabPanel from '@mui/lab/TabPanel'
+import BusinessIcon from '@mui/icons-material/Business'
+import MenuBookIcon from '@mui/icons-material/MenuBook'
+import { Grid } from '@mui/material'
+import AddDelButtonsPanel from './addDelButtonsPanel'
+import CompaniesList from './companiesTab/companiesList'
+import CompanyInformationForm from './companiesTab/companyInformationForm'
+import companyService from '../services/company'
 
 const TabMenu = () => {
     const [value, setValue] = useState('1')
+    const [companies, setCompanies] = useState([])
+    const [selectedCompanyId, setSelectedCompanyId] = useState(1)
+
+    const getSelectedCompanyIdFromList = (id) => setSelectedCompanyId(id)
+
+    useEffect(() => {
+      companyService
+        .getAll()
+        .then(data => {
+          setCompanies(data)
+        })
+    }, [])
 
     const handleChange = (event, newValue) => {
       setValue(newValue)
     }
 
-    return (
+    if (companies.length === 0) return 'loading data ...' 
+    else return (
       <Box sx={{ width: '100%', typography: 'body1' }}>
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
@@ -31,10 +45,10 @@ const TabMenu = () => {
             <Grid container spacing={2}>
               <Grid item xs={4}>
                 <AddDelButtonsPanel />
-                <CompaniesList />
+                <CompaniesList companies={companies} getSelectedCompanyIdFromList={getSelectedCompanyIdFromList}/>
               </Grid>
-              <Grid item xs={8} >{/*style={{backgroundColor: '#1976D214'}}*/}
-                <CompanyInformationForm />
+              <Grid item xs={8}>
+                <CompanyInformationForm company={companies.find(company => company.id === selectedCompanyId)} />
               </Grid>
             </Grid>
           </TabPanel>
