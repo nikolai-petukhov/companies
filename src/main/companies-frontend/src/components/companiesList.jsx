@@ -16,7 +16,7 @@ const CompaniesList = () => {
     <Box
       sx={{
         width: '100%',
-        height: 600,
+        height: 570,
         maxWidth: 360,
         bgcolor: 'background.paper',
         overflow: 'auto'

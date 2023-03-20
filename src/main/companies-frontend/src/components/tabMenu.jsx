@@ -33,7 +33,7 @@ const TabMenu = () => {
                 <AddDelButtonsPanel />
                 <CompaniesList />
               </Grid>
-              <Grid item xs={8} style={{backgroundColor: '#1976D214'}}>
+              <Grid item xs={8} >{/*style={{backgroundColor: '#1976D214'}}*/}
                 <CompanyInformationForm />
               </Grid>
             </Grid>

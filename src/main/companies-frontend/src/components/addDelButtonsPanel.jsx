@@ -5,15 +5,17 @@ import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 
 const AddDelButtonsPanel = () => {
     return (
-        <Box sx={{ '& button': { m: 1 } }}>
+        <Box sx={{marginTop: 1,'& button': { m: 1 }, display: "flex", justifyContent: "space-between" }}>
             <Button 
                 variant="outlined" 
                 endIcon={<AddCircleOutlineIcon />}
+                fullWidth
             >Add</Button>
             <Button
                 variant="outlined"
                 color="error"
                 endIcon={<RemoveCircleOutlineIcon />}
+                fullWidth
             >Delete</Button>
         </Box>
     )
